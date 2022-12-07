@@ -2,6 +2,8 @@
 
 import os
 
+from functions import read_file
+
 
 class Elf:
     def __init__(self, name: str, *calories: int):
@@ -21,13 +23,6 @@ class Elf:
         return f"{self._name}, calories: {self.total_calories}"
 
 
-def read_file(path):
-    with open(path) as f:
-        file = f.read()
-
-    return file
-
-
 def main():
     # reading file
     file = read_file('src/1_input.txt').split(os.linesep+os.linesep)
@@ -39,7 +34,6 @@ def main():
     print(max(elfs, key=lambda x: x.total_calories))
 
     # step 2
-
     elfs = sorted(elfs, key=lambda x: x.total_calories, reverse=True)
     total_calories_top_3 = sum([x.total_calories for x in elfs[:3]])
     print('Total calories top 3:', total_calories_top_3)
